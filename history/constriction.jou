@@ -1,0 +1,18 @@
+create surface circle radius 4
+create surface circle radius 2
+create surface circle radius 2
+create surface circle radius 4
+move Volume 2 location 0.000000  0.000000  10.000000 include_merged 
+move Volume 3 location 0.000000  0.000000  15.000000 include_merged 
+move Volume 4 location 0.000000  0.000000  25.000000 include_merged 
+create volume loft surface 1 2 3 4
+surface 6 scheme trimesh
+mesh surface 6
+refine surface 6 numsplit 2
+undo group begin
+set exodus netcdf4 off
+set large exodus file on
+export mesh "/Users/suzanm/Library/CloudStorage/OneDrive-GeorgiaInstituteofTechnology/cpg/meshes/squeezeext.e"  dimension 3  overwrite 
+undo group end
+block 1 surface 6
+export mesh "/Users/suzanm/Library/CloudStorage/OneDrive-GeorgiaInstituteofTechnology/cpg/meshes/squeezeext.e" block 1 dimension 3 overwrite 

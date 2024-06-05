@@ -1,0 +1,95 @@
+reset
+create torus major 6 minor 3
+rotate Surface 1 angle 90  about Z include_merged 
+undo
+rotate Surface 1 angle 90  about Y include_merged 
+undo
+rotate Surface 1 angle 90  about X include_merged 
+create brick width 10
+undo
+create brick width 18
+move Surface 6 location 0.000000  9.000000  9.000000 include_merged 
+subtract body 2  from body 1  
+move Volume 1 location 0.000000  0.000000  4.500000 include_merged 
+move Volume  location 0.000000  0.000000  -4.500000 include_merged 
+move Volume  location 0.000000  0.000000  -4.500000 include_merged 
+move Volume 1  location 0.000000  0.000000  -4.500000 include_merged 
+move Volume 1  location 0.000000  0.000000  4.500000 include_merged 
+create cylinder radius 3
+create cylinder radius 3 height 4.5
+undo
+move Volume 1  location 0.000000  0.000000  0.00000 include_merged 
+create cylinder radius 3 height 6
+undo
+create cylinder radius 3 height 12
+move Volume 3 location 0.000000  0.000000  -2.00000 include_merged 
+move Volume 3 location 0.000000  0.000000  -5.00000 include_merged 
+move Volume 3 location 0.000000  0.000000  -7.00000 include_merged 
+move Volume 3 location 0.000000  0.000000  -8.00000 include_merged 
+unite body 1, 3 
+create cylinder radius 4 height 2
+move Volume 4 location 0.000000  0.000000  -10.000000 include_merged 
+move Volume 4 location 0.000000  0.000000  -13.000000 include_merged 
+unite body 1, 4 
+undo
+undo
+undo
+undo
+create circle radius 4
+create surface circle radius 4
+move Volume 4 location 0.000000  0.000000  -31.000000 include_merged 
+move Volume 4 location 0.000000  0.000000  -13.000000 include_merged 
+move Volume 4 location 0.000000  0.000000  -14.000000 include_merged 
+move Volume 4 location 0.000000  0.000000  -15.000000 include_merged 
+move Volume 4 location 0.000000  0.000000  -16.000000 include_merged 
+loft surface 18 12
+create loft surface 18 12
+create volume loft surface 18 12
+unite body 1, 5 
+surface 16 17 20 copy reflect 0 0 1
+unite body 6, 7, 8 
+move Volume 6 location 0.000000  0.000000  10.750000 include_merged 
+move Volume 6 location 0.000000  0.000000  12.0000 include_merged 
+move Volume 6 location 0.000000  0.000000  14.0000 include_merged 
+move Volume 6 location 0.000000  0.000000  15.0000 include_merged 
+move Volume 6 location 0.000000  0.000000  17.0000 include_merged 
+create volume loft curve 14 35
+delete volume 6
+surface 16 17 20 8 9 copy reflect 0 0 1
+unite body 9, 10, 11, 12, 13 
+move Volume 9 location 0.000000  0.000000  13.750000 include_merged 
+move Volume 9 location 0.000000  0.000000  15.750000 include_merged 
+move Volume 9 location 0.000000  0.000000  16.750000 include_merged 
+create volume loft surface 8 29
+delete volume 14
+create volume loft surface 9 29
+create volume loft surface 8 28
+unite body 1, 15, 16, 9 
+move Volume 1 location 0.000000  0.000000 000000 include_merged 
+delete body 4
+move Volume 4  location 0.000000  0.000000  10.000000 include_merged 
+move Volume 4  location 0.000000  0.000000  10.000000 include_merged 
+move Volume 4  location 0.000000  0.000000  10.000000 include_merged 
+move Volume 4  location 0.000000  0.000000  10.000000 include_merged 
+move Volume 1  location 0.000000  0.000000  10.000000 include_merged 
+move Volume 1  location 0.000000  0.000000  20.000000 include_merged 
+move Volume 1  location 0.000000  0.000000  18.000000 include_merged 
+block 1 volume 1
+undo group begin
+set exodus netcdf4 off
+set large exodus file on
+export mesh "/Users/suzanm/Library/CloudStorage/OneDrive-GeorgiaInstituteofTechnology/cpg/meshes/fullbifurc.e"  dimension 3  overwrite 
+undo group end
+set surface 16, 17, 20, 25, 27, 34, 37 scheme trimesh
+surface 16, 17, 20, 25, 27, 34, 37 scheme trimesh
+trimesher surface gradation 1
+mesh surface 16, 17, 20, 25, 27, 34, 37
+surface 26 scheme trimesh
+trimesher surface gradation 1
+mesh surface 26
+block 1 surface 16, 17, 20, 25, 27, 34, 37, 26
+block 2 surface 16, 17, 20, 25, 27, 34, 37, 26
+export mesh "/Users/suzanm/Library/CloudStorage/OneDrive-GeorgiaInstituteofTechnology/cpg/meshes/fullbifurc.e" block 2 dimension 3 overwrite 
+refine surface 16, 17, 20, 25, 27, 34, 37, 26 numsplit 2
+block 2 surface 16, 17, 20, 25, 27, 34, 37, 26
+export mesh "/Users/suzanm/Library/CloudStorage/OneDrive-GeorgiaInstituteofTechnology/cpg/meshes/fullbifurc.e" block 2 dimension 3 
