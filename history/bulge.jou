@@ -1,0 +1,29 @@
+reset
+create vertex 3 3 0
+create vertex 3 6 0
+create vertex 6 3 0
+create surface circle center vertex 1 2 3
+create vertex 3 3 20
+create vertex 3 6 20
+create vertex 6 3 20
+create surface circle center vertex 4 5 6
+sphere radius 3
+create volume loft surface 1 2
+move Volume  location 3.000000  6.000000  9.000000 include_merged 
+move Volume  location 3.000000  6.000000  9.000000 include_merged 
+move Volume 3  location 3.000000  6.000000  9.000000 include_merged 
+volume 3 scale 2 2 2
+volume 3 scale 1.5 1.5 1.5
+undo
+undo
+volume 3 scale 1.5 1.5 1.5
+move Volume 3  location 3.000000  3.000000  9.000000 include_merged 
+move Volume 3  location 3.000000  4.000000  9.000000 include_merged 
+move Volume 3  location 3.000000  5.000000  9.000000 include_merged 
+unite volume 3 4
+trimesher surface gradation 1
+surface 7 8 scheme trimesh
+mesh surface 7 8
+refine surface 7 8 numsplit 2
+block 1 surface 7 8
+export mesh "/Users/suzanm/Library/CloudStorage/OneDrive-GeorgiaInstituteofTechnology/cpg/meshes/cutout.e" block 1 dimension 3
