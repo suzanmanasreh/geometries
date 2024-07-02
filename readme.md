@@ -8,4 +8,4 @@ Exodus II files in `exodusmesh/` folder easily visualized with Paraview.
 - [X] Loop
 - [ ] Loop with constriction
 - [ ] Figure 8 loop
-- [X] Cylinder with bulge
+- [X] Cylinder with sac
