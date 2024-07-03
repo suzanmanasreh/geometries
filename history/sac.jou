@@ -9,9 +9,9 @@ create vertex 3 6 20
 create vertex 6 3 20
 create surface circle center vertex 4 5 6
 
-sphere radius 3
 create volume loft surface 1 2
 
+sphere radius 3
 volume 3 scale 1.5 1.5 1.5
 move Volume 3  location 3.000000  5.000000  9.000000 include_merged 
 unite volume 3 4
